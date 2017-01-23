@@ -10,3 +10,4 @@ Existen algunos tipos de Webhooks
 * Pipes: Notifica eventos, y quien lo recibe los usa para transmitirlos
 * Plugins: Notifica eventos y quien lo recibe luego de procesarlos devuelve datos en el **response**
 
+La implementación basada en el API REST recibe el nombre de RESTHook
