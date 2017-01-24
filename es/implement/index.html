@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Webhooks · GitBook</title>
+        <title>Implementar · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -12,20 +12,20 @@
         
         
     
-    <link rel="stylesheet" href="../gitbook/style.css">
+    <link rel="stylesheet" href="../../gitbook/style.css">
 
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
                 
             
         
@@ -53,12 +53,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="resthooks/" />
+    <link rel="next" href="api_security.html" />
     
+    
+    <link rel="prev" href="../resthooks/" />
     
 
     </head>
@@ -89,9 +91,9 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="../">
             
-                <a href="./">
+                <a href="../">
             
                     
                     Webhooks
@@ -102,9 +104,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="resthooks/">
+        <li class="chapter " data-level="1.2" data-path="../resthooks/">
             
-                <a href="resthooks/">
+                <a href="../resthooks/">
             
                     
                     REST Hooks
@@ -122,9 +124,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="implement/">
+        <li class="chapter active" data-level="2.1" data-path="./">
             
-                <a href="implement/">
+                <a href="./">
             
                     
                     Implementar
@@ -136,9 +138,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="implement/api_security.html">
+        <li class="chapter " data-level="2.1.1" data-path="api_security.html">
             
-                <a href="implement/api_security.html">
+                <a href="api_security.html">
             
                     
                     Seguridad API REST
@@ -149,9 +151,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="implement/subscriptions.html">
+        <li class="chapter " data-level="2.1.2" data-path="subscriptions.html">
             
-                <a href="implement/subscriptions.html">
+                <a href="subscriptions.html">
             
                     
                     Manejar Suscripciones
@@ -162,7 +164,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="implement/events.md">
+        <li class="chapter " data-level="2.1.3" data-path="events.md">
             
                 <span>
             
@@ -175,7 +177,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4" data-path="implement/hooks.md">
+        <li class="chapter " data-level="2.1.4" data-path="hooks.md">
             
                 <span>
             
@@ -188,7 +190,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.5" data-path="implement/security.md">
+        <li class="chapter " data-level="2.1.5" data-path="security.md">
             
                 <span>
             
@@ -201,7 +203,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.6" data-path="implement/performance.md">
+        <li class="chapter " data-level="2.1.6" data-path="performance.md">
             
                 <span>
             
@@ -214,7 +216,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.7" data-path="implement/retries.md">
+        <li class="chapter " data-level="2.1.7" data-path="retries.md">
             
                 <span>
             
@@ -262,7 +264,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Webhooks</a>
+        <a href=".." >Implementar</a>
     </h1>
 </div>
 
@@ -277,17 +279,17 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><img src="http://www.webhooks.org/static/header.png" alt="Webhooks"></p>
-<h1 id="webhooks">Webhooks</h1>
-<p>Un Webhook es una petici&#xF3;n HTTP v&#xED;a POST que se gatilla cuando sucede algo dentro de nuestra aplicaci&#xF3;n web.</p>
-<p>Webhooks son una muy eficiente forma de integrar aplicaciones web, evitando el polling  y carga desmedida a nuestra API REST. Ya que la mayor&#xED;a de los datos que se obtien mediante polling son basura, es decir, mientras no haya ocurrido ning&#xFA;n cambio en los datos (que ocurre m&#xE1;s del 90% de las veces) no tiene sentido consultar por ellos.</p>
-<p>Existen algunos tipos de Webhooks</p>
-<ul>
-<li><strong>Push</strong>: Es el utilizado para notificar cambios en tiempo real</li>
-<li><strong>Pipes</strong>: Notifica eventos, y quien lo recibe, usa los datos para transmitirlos</li>
-<li><strong>Plugins</strong>: Notifica eventos, y quien lo recibe luego de procesar los datos, los devuelve en el <strong>response</strong>.</li>
-</ul>
-<p>La implementaci&#xF3;n basada en el API REST recibe el nombre de <a href="resthooks">REST Hook</a>.</p>
+                                <h1 id="implementar-rest-hooks">Implementar REST Hooks</h1>
+<p>Para implementar REST Hooks (De ahora en adelante Webhooks) en una aplicaci&#xF3;n Web, es necesario contar con un API REST, adem&#xE1;s de considerar lo siguiente:</p>
+<ol>
+<li><a href="api_security.html">Seguridad API REST</a></li>
+<li><a href="subscriptions.html">Manejar Suscripciones</a></li>
+<li><a href="events.md">Listar Eventos</a></li>
+<li><a href="hooks.md">Enviar Hooks</a></li>
+<li><a href="security.md">Seguridad</a></li>
+<li><a href="performance.md">Rendimiento</a></li>
+<li><a href="retries.md">Errores y Reinentos</a></li>
+</ol>
 
                                 
                                 </section>
@@ -315,8 +317,12 @@
 
             
                 
+                <a href="../resthooks/" class="navigation navigation-prev " aria-label="Previous page: REST Hooks">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="resthooks/" class="navigation navigation-next navigation-unique" aria-label="Next page: REST Hooks">
+                
+                <a href="api_security.html" class="navigation navigation-next " aria-label="Next page: Seguridad API REST">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -327,45 +333,45 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Webhooks","level":"1.1","depth":1,"next":{"title":"REST Hooks","level":"1.2","depth":1,"path":"resthooks/README.md","ref":"resthooks/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"README.md","mtime":"2017-01-24T21:57:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-24T21:58:25.174Z"},"basePath":".","book":{"language":"es"}});
+            gitbook.page.hasChanged({"page":{"title":"Implementar","level":"2.1","depth":1,"next":{"title":"Seguridad API REST","level":"2.1.1","depth":2,"path":"implement/api_security.md","ref":"implement/api_security.md","articles":[]},"previous":{"title":"REST Hooks","level":"1.2","depth":1,"path":"resthooks/README.md","ref":"resthooks/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/README.md","mtime":"2017-01-24T21:57:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-24T21:58:25.174Z"},"basePath":"..","book":{"language":"es"}});
         });
     </script>
 </div>
 
         
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
     
         
-        <script src="../gitbook/gitbook-plugin-js-sequence-diagram-full/sequence-diagram-min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-js-sequence-diagram-full/plugin.js"></script>
+        <script src="../../gitbook/gitbook-plugin-js-sequence-diagram-full/sequence-diagram-min.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        <script src="../../gitbook/gitbook-plugin-js-sequence-diagram-full/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 

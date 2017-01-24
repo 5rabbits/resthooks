@@ -1,0 +1,486 @@
+
+<!DOCTYPE HTML>
+<html lang="es" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Manejar Suscripciones · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="events.md" />
+    
+    
+    <link rel="prev" href="api_security.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Escribe para buscar" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Definiciones</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Webhooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../resthooks/">
+            
+                <a href="../resthooks/">
+            
+                    
+                    REST Hooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Implementar REST Hooks</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Implementar
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="api_security.html">
+            
+                <a href="api_security.html">
+            
+                    
+                    Seguridad API REST
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.1.2" data-path="subscriptions.html">
+            
+                <a href="subscriptions.html">
+            
+                    
+                    Manejar Suscripciones
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="events.md">
+            
+                <span>
+            
+                    
+                    Listar Eventos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="hooks.md">
+            
+                <span>
+            
+                    
+                    Enviar Hooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="security.md">
+            
+                <span>
+            
+                    
+                    Seguridad
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="performance.md">
+            
+                <span>
+            
+                    
+                    Rendimiento
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="retries.md">
+            
+                <span>
+            
+                    
+                    Errores y Reinentos
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publicado con GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Manejar Suscripciones</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="suscripciones">Suscripciones</h1>
+<p>Implementar API REST para que un tercero pueda suscribirse</p>
+<pre><code>GET     /api/v1/webhooks/         listar suscripciones
+POST    /api/v1/webhooks/         crear suscripciones
+GET     /api/v1/webhooks/:id/     obtener una suscripci&#xF3;n
+PUT     /api/v1/webhooks/:id/     actualizar una suscripci&#xF3;n
+DELETE  /api/v1/webhooks/:id/     eliminar una suscripci&#xF3;n
+</code></pre><p>El endpoint m&#xE1;s importante es el que permite crear una suscripci&#xF3;n (webhook): <code>POST /api/v1/webhooks/</code></p>
+<p>Independiete del storage, una suscripci&#xF3;n tiene los siguientes atributos</p>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Descripci&#xF3;n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>Id &#xFA;nico del webhook</td>
+</tr>
+<tr>
+<td>resource</td>
+<td>String. El recurso al cual el webhook est&#xE1; suscrito. ej: &apos;clients&apos;, &apos;invoices&apos;</td>
+</tr>
+<tr>
+<td>target</td>
+<td>String. La URL que recibe el POST del webhook</td>
+</tr>
+<tr>
+<td>events</td>
+<td>String. Evento(s) a los que se est&#xE1; suscrito (separados por coma). Ej: &apos;create&apos; o &apos;create,update,destroy&apos;</td>
+</tr>
+<tr>
+<td>active</td>
+<td><strong>Editable</strong> Boolean. Si est&#xE1; activo, el webhook enviar&#xE1; eventos</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td><strong>Oculto</strong>. DateTime de creaci&#xF3;n</td>
+</tr>
+<tr>
+<td>secret</td>
+<td><strong>Oculto</strong>. String. Un secret key &#xFA;nico generado en el registro</td>
+</tr>
+<tr>
+<td>last_status</td>
+<td>Integer. El status code HTTP recibido en la &#xFA;ltima ejecuci&#xF3;n</td>
+</tr>
+<tr>
+<td>last_success_at</td>
+<td>DateTime de la &#xFA;ltima vez que el evento se envi&#xF3; satisfactoriamente al <strong>target</strong></td>
+</tr>
+<tr>
+<td>last_failure_at</td>
+<td>DateTime de la &#xFA;ltima vez que fall&#xF3; el env&#xED;o del evento</td>
+</tr>
+<tr>
+<td>last_failure_content</td>
+<td>String. El mensaje de error del &#xFA;ltimo env&#xED;o fallido</td>
+</tr>
+</tbody>
+</table>
+<p>Por consistencia todos los atributos, excepto el <strong>active</strong> son de Solo lectura.</p>
+<h4 id="creando-un--webhook">Creando un  Webhook</h4>
+<p>Este endpoint debe crear una tupla en el storage de webhooks y debe validar:</p>
+<ul>
+<li>Que sea un resource v&#xE1;lido</li>
+<li>Que el o los eventos correspondan resource</li>
+<li>Que el target acepte peticiones POST y quiera recibir webhooks</li>
+</ul>
+<pre><code>POST /api/v1/webhooks/
+</code></pre><h5 id="payload">Payload</h5>
+<pre><code>  {
+    resource: &apos;clients&apos;,
+    events: &apos;create,update&apos;,
+    target: &apos;https://example.com/hook-receiver/client_updates&apos;
+  }
+</code></pre><h5 id="respuesta-satisfactoria">Respuesta satisfactoria</h5>
+<p>201 Created: La aplicaci&#xF3;n pudo registrar el webhook correctamente</p>
+<pre><code>  {
+    id: 12345
+    resource: &apos;clients&apos;,
+    events: &apos;create,update&apos;,
+    target: &apos;https://example.com/hook-receiver/client_updates&apos;,
+    active: true,
+    last_status: 200,
+    last_success_at: null,
+    last_failure_at: null,
+    last_failure_content: null
+  }
+</code></pre><h5 id="respuesta-fallida">Respuesta fallida</h5>
+<p>400 Bad request: Los par&#xE1;metros resource, events o target son inv&#xE1;lidos.</p>
+<pre><code>  {
+    error: &apos;Recurso inv&#xE1;lido&apos;
+  }
+</code></pre><h5 id="verificaci&#xF3;n-del-destino">Verificaci&#xF3;n del Destino</h5>
+<p>El endpoint de creaci&#xF3;n debe considerar realizar un test al <strong>target</strong> antes de aceptarlo y registrarlo en el storage. El test es bastante simple y servir&#xE1; para  verificar si el <strong>target</strong> desea recibir webhooks. El flujo es el siguiente.</p>
+<p>Sea</p>
+<ul>
+<li><strong>Consumer</strong>: La aplicaci&#xF3;n de terceros que quiere recibir webhooks</li>
+<li><strong>Sender</strong>: Nuestra apliaci&#xF3;n web que gatilla los eventos</li>
+</ul>
+<pre><code class="lang-sequence">Consumer-&gt;Sender: POST /api/v1/webhooks
+Sender-&gt;Consumer: POST /target-url  \n X-Hook-Secret: SECRET
+Consumer--&gt;Sender: Response 200 \n X-Hook-Secret: SECRET
+Sender-&gt;Sender: Guardar Suscripci&#xF3;n
+Sender--&gt;Consumer: Response 201 { id: 1234, ... }
+</code></pre>
+<p>Desde el punto de vista de nuestra aplicaci&#xF3;n web:</p>
+<ol>
+<li>Se recibe el POST hacia el enpoint /webhooks/ para crear un webhook (suscripci&#xF3;n a evento)</li>
+<li>Se validan los par&#xE1;metros: resource, events sean correctos</li>
+<li>Se realiza una petici&#xF3;n POST al <strong>target</strong> con header X-Hook-Secret: SECRET, un secret &#xFA;nico generado para la validaci&#xF3;n.</li>
+<li>Se espera que el <strong>response</strong> de <strong>target</strong> sea un Status HTTP 200 con un response header X-Hook-Secret id&#xE9;ntico al envaido.</li>
+<li>Si todo es correcto, se procede a almacenar y retornar el webhook en el response con status code 201 Creado.</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="api_security.html" class="navigation navigation-prev " aria-label="Previous page: Seguridad API REST">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="events.md" class="navigation navigation-next " aria-label="Next page: Listar Eventos">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Manejar Suscripciones","level":"2.1.2","depth":2,"next":{"title":"Listar Eventos","level":"2.1.3","depth":2,"path":"implement/events.md","ref":"implement/events.md","articles":[]},"previous":{"title":"Seguridad API REST","level":"2.1.1","depth":2,"path":"implement/api_security.md","ref":"implement/api_security.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/subscriptions.md","mtime":"2017-01-24T21:57:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-24T21:58:25.174Z"},"basePath":"..","book":{"language":"es"}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-js-sequence-diagram-full/sequence-diagram-min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-js-sequence-diagram-full/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
