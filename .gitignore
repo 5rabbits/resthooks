@@ -1,3 +1,5 @@
+_book
 gitbook/
+node_modules/
 index.html
 search_index.json
