@@ -8,19 +8,19 @@ De forma general el flujo de suscripción y notificación es el siguiente:
 
 ``` sequence
 Consumer->Sender: Suscribe a evento
-Sender->Store: Almacena suscripción
+Sender->Storage: Almacena suscripción
 Sender-->Consumer: suscripción
 Sender->Sender: Ocurre un evento
 Sender->Queue: Encola notificación
-Queue->Store: Busca suscripciones
-Store-->Queue: Suscripciones
+Queue->Storage: Busca suscripciones
+Storage-->Queue: Suscripciones
 Queue->Consumer: Notifica Evento mediante POST
 Consumer->Sender: API REST
 ```
 
 Donde:
 
-* Sender: Es nuestra aplicación web que despacha webhooks
+* Sender: Es nuestra aplicación web que despacha eventos
 * Consumer: Es la aplicación de terceros que se suscribe
-* Store: Donde almacena los datos nuestra aplicación
+* Storage: Donde almacena los datos nuestra aplicación
 * Queue: Algún servicio de encolamiento de tareas
