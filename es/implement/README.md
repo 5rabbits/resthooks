@@ -4,8 +4,7 @@ Para implementar REST Hooks (De ahora en adelante Webhooks) en una aplicación W
 
   1. [Seguridad API REST](api_security.md)
   2. [Manejar Suscripciones](subscriptions.md)
-  3. [Listar Eventos](events.md)
-  4. [Enviar Hooks](hooks.md)
+  3. [Listar e implementar Eventos](events.md)
+  4. [Enviar hooks](hooks.md)
+    4.1 [Reintentos](retries.md)
   5. [Seguridad](security.md)
-  6. [Rendimiento](performance.md)
-  7. [Errores y Reinentos](retries.md)

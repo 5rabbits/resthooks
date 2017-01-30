@@ -13,5 +13,3 @@ Existen algunos tipos de Webhooks
 * **Plugins**: Notifica eventos, y quien lo recibe luego de procesar los datos, los devuelve en el **response**.
 
 La implementación basada en el API REST recibe el nombre de [REST Hook](resthooks/).
-
-

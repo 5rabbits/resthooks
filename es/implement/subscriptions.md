@@ -35,7 +35,7 @@ Por consistencia todos los atributos, excepto el **active** son de Solo lectura.
 
 Este endpoint debe crear una tupla en el storage de webhooks y debe validar:
   * Que sea un resource válido
-  * Que el o los eventos correspondan resource
+  * Que el o los eventos correspondan resource. Los tipos de [Eventos](events.md) deben ser públicos para los integradores.
   * Que el target acepte peticiones POST y quiera recibir webhooks
 
 ```
@@ -104,3 +104,5 @@ Desde el punto de vista de nuestra aplicación web:
 3. Se realiza una petición POST al **target** con header X-Hook-Secret: SECRET, un secret único generado para la validación.
 4. Se espera que el **response** de **target** sea un Status HTTP 200 con un response header X-Hook-Secret idéntico al envaido.
 5. Si todo es correcto, se procede a almacenar y retornar el webhook en el response con status code 201 Creado.
+
+[Listando Eventos](events.md)
