@@ -102,7 +102,7 @@ Desde el punto de vista de nuestra aplicación web:
 1. Se recibe el POST hacia el enpoint /webhooks/ para crear un webhook (suscripción a evento)
 2. Se validan los parámetros: resource, events sean correctos
 3. Se realiza una petición POST al **target** con header X-Hook-Secret: SECRET, un secret único generado para la validación.
-4. Se espera que el **response** de **target** sea un Status HTTP 200 con un response header X-Hook-Secret idéntico al envaido.
+4. Se espera que el **response** de **target** sea un Status HTTP 200 con un response header X-Hook-Secret idéntico al enviado.
 5. Si todo es correcto, se procede a almacenar y retornar el webhook en el response con status code 201 Creado.
 
 [Listando Eventos](events.md)
