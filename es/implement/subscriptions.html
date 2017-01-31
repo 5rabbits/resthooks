@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="events.md" />
+    <link rel="next" href="events.html" />
     
     
     <link rel="prev" href="api_security.html" />
@@ -164,12 +164,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="events.md">
+        <li class="chapter " data-level="2.1.3" data-path="events.html">
             
-                <span>
+                <a href="events.html">
             
                     
-                    Listar Eventos
+                    Listar e implementar eventos
             
                 </a>
             
@@ -177,9 +177,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4" data-path="hooks.md">
+        <li class="chapter " data-level="2.1.4" data-path="hooks.html">
             
-                <span>
+                <a href="hooks.html">
             
                     
                     Enviar Hooks
@@ -188,40 +188,33 @@
             
 
             
-        </li>
+            <ul class="articles">
+                
     
-        <li class="chapter " data-level="2.1.5" data-path="security.md">
+        <li class="chapter " data-level="2.1.4.1" data-path="retries.html">
             
-                <span>
-            
-                    
-                    Seguridad
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.6" data-path="performance.md">
-            
-                <span>
-            
-                    
-                    Rendimiento
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.7" data-path="retries.md">
-            
-                <span>
+                <a href="retries.html">
             
                     
                     Errores y Reinentos
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Seguridad
             
                 </a>
             
@@ -347,7 +340,7 @@ DELETE  /api/v1/webhooks/:id/     eliminar una suscripci&#xF3;n
 <p>Este endpoint debe crear una tupla en el storage de webhooks y debe validar:</p>
 <ul>
 <li>Que sea un resource v&#xE1;lido</li>
-<li>Que el o los eventos correspondan resource</li>
+<li>Que el o los eventos correspondan resource. Los tipos de <a href="events.html">Eventos</a> deben ser p&#xFA;blicos para los integradores.</li>
 <li>Que el target acepte peticiones POST y quiera recibir webhooks</li>
 </ul>
 <pre><code>POST /api/v1/webhooks/
@@ -393,9 +386,10 @@ Sender--&gt;Consumer: Response 201 { id: 1234, ... }
 <li>Se recibe el POST hacia el enpoint /webhooks/ para crear un webhook (suscripci&#xF3;n a evento)</li>
 <li>Se validan los par&#xE1;metros: resource, events sean correctos</li>
 <li>Se realiza una petici&#xF3;n POST al <strong>target</strong> con header X-Hook-Secret: SECRET, un secret &#xFA;nico generado para la validaci&#xF3;n.</li>
-<li>Se espera que el <strong>response</strong> de <strong>target</strong> sea un Status HTTP 200 con un response header X-Hook-Secret id&#xE9;ntico al envaido.</li>
+<li>Se espera que el <strong>response</strong> de <strong>target</strong> sea un Status HTTP 200 con un response header X-Hook-Secret id&#xE9;ntico al enviado.</li>
 <li>Si todo es correcto, se procede a almacenar y retornar el webhook en el response con status code 201 Creado.</li>
 </ol>
+<p><a href="events.html">Listando Eventos</a></p>
 
                                 
                                 </section>
@@ -428,7 +422,7 @@ Sender--&gt;Consumer: Response 201 { id: 1234, ... }
                 </a>
                 
                 
-                <a href="events.md" class="navigation navigation-next " aria-label="Next page: Listar Eventos">
+                <a href="events.html" class="navigation navigation-next " aria-label="Next page: Listar e implementar eventos">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -439,7 +433,7 @@ Sender--&gt;Consumer: Response 201 { id: 1234, ... }
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Manejar Suscripciones","level":"2.1.2","depth":2,"next":{"title":"Listar Eventos","level":"2.1.3","depth":2,"path":"implement/events.md","ref":"implement/events.md","articles":[]},"previous":{"title":"Seguridad API REST","level":"2.1.1","depth":2,"path":"implement/api_security.md","ref":"implement/api_security.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/subscriptions.md","mtime":"2017-01-24T21:57:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-24T21:58:25.174Z"},"basePath":"..","book":{"language":"es"}});
+            gitbook.page.hasChanged({"page":{"title":"Manejar Suscripciones","level":"2.1.2","depth":2,"next":{"title":"Listar e implementar eventos","level":"2.1.3","depth":2,"path":"implement/events.md","ref":"implement/events.md","articles":[]},"previous":{"title":"Seguridad API REST","level":"2.1.1","depth":2,"path":"implement/api_security.md","ref":"implement/api_security.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/subscriptions.md","mtime":"2017-01-31T14:38:35.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-31T14:38:52.095Z"},"basePath":"..","book":{"language":"es"}});
         });
     </script>
 </div>
