@@ -1,5 +1,3 @@
-![Webhooks](http://www.webhooks.org/static/header.png)
-
 # Webhooks
 
 Un Webhook es una petición HTTP vía POST que se gatilla cuando sucede algo dentro de nuestra aplicación web.
