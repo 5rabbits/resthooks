@@ -29,3 +29,6 @@ El suscriptor puede tener algún mencanismo propio de autenticación por Token, 
 - Receptor realiza la suscripción al webhook con la url generada como Target
 - El sender (nuestra aplicación) envía el webhook a dicha dirección, como el token está embebido en la URL, el receptor puede verificar la autenticidad del POST y autorizar la llamada.
 
+### Skinny Payloads
+
+Para asegurar que cualquiera no tenga acceso a nuestra información, se pueden usar skinny payloads, estos son una representación reducida de los datos del recurso que se está consultando. Por ejemplo, cuando ocurre un evento, en vez de enviar el recurso completo, se envía el **identificador** y el **evento** gatillado, de esta forma el suscriptor puede hacer llamadas al API REST para obtener el resto de la información; el suscriptor necesitará tener credenciales para el API REST.
