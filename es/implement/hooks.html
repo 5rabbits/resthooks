@@ -275,7 +275,7 @@
                                 <h1 id="enviar-hooks">Enviar hooks</h1>
 <p>Al ocurrir un evento se deben gatillar los hooks registrados para dicho evento.</p>
 <h4 id="model-driven">Model Driven</h4>
-<p>Se optar&#xE1; por una soluci&#xF3;n Model Driven, es decir, la l&#xF3;gica del env&#xED;o del evento debe estar desarrollada en callbacks del modelo. Al ocurrir cualquier acci&#xF3;n de guardado / eliminaci&#xF3;n de datos, se debe gatillar la acci&#xF3;n que busca las suscripciones del modelo (y sus &quot;parents&quot;), y las env&#xED;a.</p>
+<p>La l&#xF3;gica del env&#xED;o del evento est&#xE1; desarrollada en callbacks del modelo. Al ocurrir cualquier acci&#xF3;n de guardado / eliminaci&#xF3;n de datos, se debe gatillar la acci&#xF3;n que busca las suscripciones del modelo (y sus &quot;parents&quot;), y las env&#xED;a.</p>
 <p>Ejemplo: El siguiente ejemplo gatilla el evento de creaci&#xF3;n de un pago para suscripciones al recurso <strong>payment</strong>, pero tambi&#xE9;n al recurso <strong>invoice</strong></p>
 <pre><code class="lang-Ruby"><span class="hljs-comment"># Invoice Model</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Invoice</span> &lt; NotificableModel</span>
@@ -318,21 +318,9 @@
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-<h4 id="async--background">Async / Background</h4>
-<p>Tanto la b&#xFA;squeda de suscriptores como el env&#xED;o del hook v&#xED;a POST debe hacerse en una tarea as&#xED;ncrona (y en background) respecto del flujo (callabck del modelo) que gatill&#xF3; el evento. De esta forma se establece un mecanismo elegante y a la vez eficiente.</p>
-<p>Si tomamos el ejemplo anterior, el m&#xE9;todo <code>Subscriptions.send_event</code> deber&#xED;a ser capaz simplemente de:</p>
-<ul>
-<li>Instanciar un mecanismo as&#xED;ncrono de env&#xED;o de mensajes (Worker, Job)</li>
-<li>Encolar el evento con los datos b&#xE1;sicos (event_name, resource_id, parent_id)</li>
-</ul>
-<p>Luego el mecanismo as&#xED;ncrono (Worker, Job, Queue) deber&#xE1; ser capaz de:</p>
-<ul>
-<li>Buscar todos los suscriptores al <code>recurso-evento</code></li>
-<li>Construir el <strong>payload</strong> de evento definido en <a href="events.html">el cap&#xED;tulo anterior</a></li>
-<li>Enviar v&#xED;a POST a todos los targets de cada suscriptor encontrado</li>
-<li>Manejar el c&#xF3;digo de retorno para reencolar, finalizar, o eliminar la suscripci&#xF3;n (410). Puede verlo en <a href="retries.html">Manejo de Reintentos</a></li>
-</ul>
-<h3 id="legacy">Legacy</h3>
+<h4 id="api-driven">API Driven</h4>
+<p>Otra forma de implementaci&#xF3;n ser&#xED;a intervenir el API REST de manera que las notificaciones de los eventos tengan relaci&#xF3;n directa con el endpoint invocado una vez que la ejecuci&#xF3;n de este finalice satisfactoriamente.</p>
+<h3 id="legacy-driven">Legacy Driven</h3>
 <p>En un software Legado, hipot&#xE9;ticamente escrito en PHP, posiblemente existan entidades DTO (Data tansfer Objects) y DAO (Data Access Objects), en dicho caso se puede simular el trabajo con modelos.</p>
 <ul>
 <li>El DTO debe implementar <code>Notificable</code> y m&#xE9;todos callbacks<ul>
@@ -349,7 +337,32 @@
 Entity-&gt;after_update()
 </code></pre><ul>
 <li>Por su parte Entity que implementa Notificable ya puede funcionar como <strong>NotificableModel</strong> descrito en el ejemplo Ruby.</li>
+<li>Tambi&#xE9;n la l&#xF3;gica de env&#xED;o de notificaci&#xF3;n debiera estar en el Abstracto Notificable.</li>
 </ul>
+<h4 id="async--background">Async / Background</h4>
+<p>Tanto la b&#xFA;squeda de suscriptores como el env&#xED;o del hook v&#xED;a POST debe hacerse en una tarea as&#xED;ncrona (y en background) respecto del flujo (callabck del modelo) que gatill&#xF3; el evento. De esta forma se establece un mecanismo elegante y a la vez eficiente.</p>
+<p>Si tomamos el ejemplo anterior, el m&#xE9;todo <code>Subscriptions.send_event</code> deber&#xED;a ser capaz simplemente de:</p>
+<ul>
+<li>Instanciar un mecanismo as&#xED;ncrono de env&#xED;o de mensajes (Worker, Job)</li>
+<li>Encolar el evento con los datos b&#xE1;sicos (event_name, resource_id, parent_id)</li>
+</ul>
+<p>Luego el mecanismo as&#xED;ncrono (Worker, Job, Queue) deber&#xE1; ser capaz de:</p>
+<ul>
+<li>Buscar todos los suscriptores al <code>recurso-evento</code></li>
+<li>Construir el <strong>payload</strong> de evento definido en <a href="events.html">el cap&#xED;tulo anterior</a></li>
+<li>Enviar v&#xED;a POST a todos los targets de cada suscriptor encontrado</li>
+<li>Manejar el c&#xF3;digo de retorno para reencolar, finalizar, o eliminar la suscripci&#xF3;n (410). Puede verlo en <a href="retries.html">Manejo de Reintentos</a></li>
+</ul>
+<pre><code class="lang-sequence">Model-&gt;Notificable: Enviar Evento
+Notificable-&gt;Queue_1: Encola Evento
+Worker_1-&gt;Database: Buscar Suscripciones
+Database--&gt;Worker_1: suscripciones
+Worker_1-&gt;Worker_1: Payload del evento por suscriptor
+Worker_1-&gt;Queue_2: Encola notificaci&#xF3;n
+Queue_2-&gt;Suscriptor: POST Webhok
+Suscriptor--&gt;Queue_2: Status Code
+Queue_2-&gt;Queue_2: An&#xE1;lisis Retorno
+</code></pre>
 
                                 
                                 </section>
@@ -393,7 +406,7 @@ Entity-&gt;after_update()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Enviar Hooks","level":"2.1.4","depth":2,"next":{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]},"previous":{"title":"Listar e implementar eventos","level":"2.1.3","depth":2,"path":"implement/events.md","ref":"implement/events.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/hooks.md","mtime":"2017-01-30T23:06:46.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-31T14:38:52.095Z"},"basePath":"..","book":{"language":"es"}});
+            gitbook.page.hasChanged({"page":{"title":"Enviar Hooks","level":"2.1.4","depth":2,"next":{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]},"previous":{"title":"Listar e implementar eventos","level":"2.1.3","depth":2,"path":"implement/events.md","ref":"implement/events.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/hooks.md","mtime":"2017-02-23T15:03:50.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-23T15:04:47.917Z"},"basePath":"..","book":{"language":"es"}});
         });
     </script>
 </div>
