@@ -14,6 +14,8 @@ El mecanismo de Personal API Token es uno muy utilizado, sin embargo, no es el m
 
 Consideraciones:
 
-1. Proveer un mecanismo para **generar** API Tokens asociados al usuario
-2. Proveer un mecanismo para **revocar** API Tokens
-3. El API Token generalmente viaja en cada llamada al API REST en los headers para autenticar cada llamada.
+1. Proveer un mecanismo para **generar** Personal API Tokens al usuario
+2. Proveer un mecanismo para **revocar** Personal API Tokens
+3. El API Token generalmente viaja en los headers en cada llamada al API REST
+
+Por favor visitar https://jwt.io/introduction/, que provee un estándar (Json web tokens) de autenticación.
