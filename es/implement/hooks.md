@@ -97,8 +97,8 @@ Model->Notificable: Enviar Evento
 Notificable->Queue_1: Encola Evento
 Worker_1->Database: Buscar Suscripciones
 Database-->Worker_1: suscripciones
-Worker_1->Worker_1: Payload del evento por suscriptor
-Worker_1->Queue_2: Encola notificación
+Worker_1->Worker_1: Payload suscriptor
+Worker_1->Queue_2: Encola notificaciones
 Queue_2->Suscriptor: POST Webhok
 Suscriptor-->Queue_2: Status Code
 Queue_2->Queue_2: Análisis Retorno
