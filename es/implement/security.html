@@ -57,6 +57,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="api_security.html" />
+    
     
     <link rel="prev" href="retries.html" />
     
@@ -136,20 +138,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="api_security.html">
-            
-                <a href="api_security.html">
-            
-                    
-                    Seguridad API REST
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="subscriptions.html">
+        <li class="chapter " data-level="2.1.1" data-path="subscriptions.html">
             
                 <a href="subscriptions.html">
             
@@ -162,7 +151,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="events.html">
+        <li class="chapter " data-level="2.1.2" data-path="events.html">
             
                 <a href="events.html">
             
@@ -175,7 +164,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4" data-path="hooks.html">
+        <li class="chapter " data-level="2.1.3" data-path="hooks.html">
             
                 <a href="hooks.html">
             
@@ -189,7 +178,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.4.1" data-path="retries.html">
+        <li class="chapter " data-level="2.1.3.1" data-path="retries.html">
             
                 <a href="retries.html">
             
@@ -207,12 +196,25 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.1.5" data-path="security.html">
+        <li class="chapter active" data-level="2.1.4" data-path="security.html">
             
                 <a href="security.html">
             
                     
                     Seguridad Webhooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="api_security.html">
+            
+                <a href="api_security.html">
+            
+                    
+                    Seguridad API REST
             
                 </a>
             
@@ -274,7 +276,7 @@
 <blockquote>
 <p>ver <a href="implement/subscriptions.md#verificaci&#xF3;n-del-destino">Confirmaci&#xF3;n del Destino</a></p>
 </blockquote>
-<p>La seguridad del sistema de suscripciones viene dada por la seguirdad del API REST, ahora bien &#xBF;c&#xF3;mo le brindamos herramientas al suscriptor para que pueda verificar que se trata de un POST V&#xE1;lido?</p>
+<p>La seguridad del sistema de suscripciones viene dada por la <a href="api_security.html">seguirdad del API REST</a>, ahora bien &#xBF;c&#xF3;mo le brindamos herramientas al suscriptor para que pueda verificar que se trata de un POST V&#xE1;lido?</p>
 <h3 id="confirmar-legitimidad-del-webhook">Confirmar legitimidad del webhook</h3>
 <h4 id="sender-side">Sender side</h4>
 <p>En cada hook enviado por nuestra aplicaci&#xF3;n,  debemos firmar el mensaje mediante el header <code>X-Hook-Signature</code>. El receptor (o suscriptor) debe verificar la firma. Previamente, debe  haber habido una negociaci&#xF3;n entre el receptor y nuestra aplicaci&#xF3;n para conocer dicha firma.</p>
@@ -324,10 +326,14 @@
 
             
                 
-                <a href="retries.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Errores y Reinentos">
+                <a href="retries.html" class="navigation navigation-prev " aria-label="Previous page: Errores y Reinentos">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="api_security.html" class="navigation navigation-next " aria-label="Next page: Seguridad API REST">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -336,7 +342,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Seguridad Webhooks","level":"2.1.5","depth":2,"previous":{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/security.md","mtime":"2017-02-23T19:05:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-23T19:06:14.614Z"},"basePath":"..","book":{"language":"es"}});
+            gitbook.page.hasChanged({"page":{"title":"Seguridad Webhooks","level":"2.1.4","depth":2,"next":{"title":"Seguridad API REST","level":"2.1.5","depth":2,"path":"implement/api_security.md","ref":"implement/api_security.md","articles":[]},"previous":{"title":"Errores y Reinentos","level":"2.1.3.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/security.md","mtime":"2017-02-23T19:10:16.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-23T19:11:20.081Z"},"basePath":"..","book":{"language":"es"}});
         });
     </script>
 </div>
