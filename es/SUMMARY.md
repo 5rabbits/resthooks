@@ -13,4 +13,4 @@
   * [Listar e implementar eventos](implement/events.md)
   * [Enviar Hooks](implement/hooks.md)
     * [Errores y Reinentos](implement/retries.md)
-  * [Seguridad](implement/security.md)
+  * [Seguridad Webhooks](implement/security.md)
