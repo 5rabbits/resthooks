@@ -214,7 +214,7 @@
                 <a href="security.html">
             
                     
-                    Seguridad
+                    Seguridad Webhooks
             
                 </a>
             
@@ -273,7 +273,13 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="reintentos">Reintentos</h1>
-<p>&#xBF;Cu&#xE1;ndo reintentar un hook enviado que fall&#xF3;?</p>
+<p>&#xBF;Cu&#xE1;ndo reintentar un hook enviado que fall&#xF3;? Todo se traduce al status_code recibido del POST.</p>
+<p>Como pueden haber muchos suscriptores al mismo evento/recurso, no es recomendable analizar el body del response del webhook para actualizar o menajar l&#xF3;gica dentro de nuestra aplicaci&#xF3;n web. Sin embargo, el c&#xF3;digo http de respuesta es muy importante.</p>
+<h3 id="reintentar">Reintentar</h3>
+<p>Se debe reintentar si se obtiene cualquier respuesta del tipo 4xx, 5xx  o TimeOut</p>
+<h3 id="no-reintentar">No Reintentar</h3>
+<p>No se debe reintentar si se obtiene cualquier respuesta del tipo 2xx, 3xx o 410.</p>
+<p>El c&#xF3;digo http 410 (Gone) indica que el recurso ya no est&#xE1; disponible, por lo que nuestra aplicaci&#xF3;n deber&#xED;a inmediatamente deshabilitar la suscripci&#xF3;n que gatill&#xF3; el webhook.</p>
 
                                 
                                 </section>
@@ -306,7 +312,7 @@
                 </a>
                 
                 
-                <a href="security.html" class="navigation navigation-next " aria-label="Next page: Seguridad">
+                <a href="security.html" class="navigation navigation-next " aria-label="Next page: Seguridad Webhooks">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -317,7 +323,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"next":{"title":"Seguridad","level":"2.1.5","depth":2,"path":"implement/security.md","ref":"implement/security.md","articles":[]},"previous":{"title":"Enviar Hooks","level":"2.1.4","depth":2,"path":"implement/hooks.md","ref":"implement/hooks.md","articles":[{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/retries.md","mtime":"2017-02-23T15:04:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-23T15:06:36.590Z"},"basePath":"..","book":{"language":"es"}});
+            gitbook.page.hasChanged({"page":{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"next":{"title":"Seguridad Webhooks","level":"2.1.5","depth":2,"path":"implement/security.md","ref":"implement/security.md","articles":[]},"previous":{"title":"Enviar Hooks","level":"2.1.4","depth":2,"path":"implement/hooks.md","ref":"implement/hooks.md","articles":[{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/retries.md","mtime":"2017-02-23T15:26:39.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-23T18:51:00.152Z"},"basePath":"..","book":{"language":"es"}});
         });
     </script>
 </div>

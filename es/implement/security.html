@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Seguridad · GitBook</title>
+        <title>Seguridad Webhooks · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -212,7 +212,7 @@
                 <a href="security.html">
             
                     
-                    Seguridad
+                    Seguridad Webhooks
             
                 </a>
             
@@ -255,7 +255,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Seguridad</a>
+        <a href=".." >Seguridad Webhooks</a>
     </h1>
 </div>
 
@@ -271,6 +271,30 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="seguridad">Seguridad</h1>
+<blockquote>
+<p>ver <a href="implement/subscriptions.md#verificaci&#xF3;n-del-destino">Confirmaci&#xF3;n del Destino</a></p>
+</blockquote>
+<p>La seguridad del sistema de suscripciones viene dada por la seguirdad del API REST, ahora bien &#xBF;c&#xF3;mo le brinados herramientas al suscriptor para que pueda verificar que se trata de un POST V&#xE1;lido?</p>
+<h3 id="confirmar-legitimidad-del-webhook">Confirmar legitimidad del webhook</h3>
+<h4 id="sender-side">Sender side</h4>
+<p>En cada hook enviado por nuestra aplicaci&#xF3;n,  debemos firmar el mensaje mediante el header <code>X-Hook-Signature</code>. El receptor (o suscriptor) debe verificar la firma. Previamente, debe  haber habido una negociaci&#xF3;n entre el receptor y nuestra aplicaci&#xF3;n para conocer dicha firma.</p>
+<p>Sabemos que al realizar la suscripci&#xF3;n al webhook, se hace la <a href="implement/subscriptions.md#verificaci&#xF3;n-del-destino">verificaci&#xF3;n del destino</a> en la cual se env&#xED;a un header <code>X-Hook-Secret</code>. Una forma de asegurar la legitimidad de los siguientes POST, es utilizar un a firma (X-Hook-Signature) basada en el <code>X-Hook-Secret</code> con alg&#xFA;n dato adicional, por ejemplo:</p>
+<pre><code>* X-Hook-Secret + nombre/id del recurso
+* X-Hook-Secret + El id de la suscripci&#xF3;n
+* X-Hook-Secret + etc
+</code></pre><p>De esta manera si el suscriptor almacen&#xF3; esta informaci&#xF3;n al momento de suscribirse, podr&#xE1; verificar la autenticidad del mensaje.</p>
+<h4 id="subscription-side">Subscription side</h4>
+<p>El suscriptor puede tener alg&#xFA;n mencanismo propio de autenticaci&#xF3;n por Token, en dicho caso debe proveer la informaci&#xF3;n de autorizaci&#xF3;n directamente en la URL (target) del webhook.</p>
+<ul>
+<li>Suscriptor (receptor) Genera su propio Personal API Token</li>
+<li>Suscriptor genera la URL (target) ejemplos:<ul>
+<li><code>https://receptor.example.com/receive_updates?api_token=:personal_api_token:</code></li>
+<li><code>https://receptor.example.com/:personal_api_token:/receive_updates</code></li>
+</ul>
+</li>
+<li>Receptor realiza la suscripci&#xF3;n al webhook con la url generada como Target</li>
+<li>El sender env&#xED;a el webhook a dicha direcci&#xF3;n, como el token est&#xE1; embebido en la URL, el receptor puede verificar la autenticidad del POST y autorizar la llamada.</li>
+</ul>
 
                                 
                                 </section>
@@ -310,7 +334,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Seguridad","level":"2.1.5","depth":2,"previous":{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/security.md","mtime":"2017-02-23T15:04:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-23T15:06:36.590Z"},"basePath":"..","book":{"language":"es"}});
+            gitbook.page.hasChanged({"page":{"title":"Seguridad Webhooks","level":"2.1.5","depth":2,"previous":{"title":"Errores y Reinentos","level":"2.1.4.1","depth":3,"path":"implement/retries.md","ref":"implement/retries.md","articles":[]},"dir":"ltr"},"config":{"plugins":["js-sequence-diagram-full@>=0.3.1"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"js-sequence-diagram-full":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"language":"es","gitbook":"*"},"file":{"path":"implement/security.md","mtime":"2017-02-23T18:50:16.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-23T18:51:00.152Z"},"basePath":"..","book":{"language":"es"}});
         });
     </script>
 </div>
