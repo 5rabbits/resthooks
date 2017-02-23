@@ -14,4 +14,4 @@ Consideraciones:
 2. Proveer un mecanismo para **revocar** Personal API Tokens
 3. El API Token generalmente viaja en los headers en cada llamada al API REST
 
-Por favor visitar https://jwt.io/introduction/, que provee un estándar (JSON Web tokens) para el token.
+Por favor visitar https://jwt.io/introduction/ que provee un estándar (JSON Web tokens)
