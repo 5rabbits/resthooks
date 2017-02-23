@@ -2,7 +2,7 @@
 
 > ver [Confirmación del Destino](implement/subscriptions.md#verificación-del-destino)
 
-La seguridad del sistema de suscripciones viene dada por la seguirdad del API REST, ahora bien ¿cómo le brindamos herramientas al suscriptor para que pueda verificar que se trata de un POST Válido?
+La seguridad del sistema de suscripciones viene dada por la [seguirdad del API REST](api_security.md), ahora bien ¿cómo le brindamos herramientas al suscriptor para que pueda verificar que se trata de un POST Válido?
 
 ### Confirmar legitimidad del webhook
 
